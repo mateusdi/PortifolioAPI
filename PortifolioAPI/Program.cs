@@ -1,5 +1,7 @@
 
 
+using Microsoft.EntityFrameworkCore;
+using PortifolioAPI.Data;
 using PortifolioAPI.Interfaces;
 using PortifolioAPI.Respositories;
 
@@ -12,8 +14,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//conexão com o banco de dados
+var connectionStringMysql = builder.Configuration.GetConnectionString("ConnectionMysql");
+builder.Services.AddDbContext<DBContext>(option=> option.UseMySql(connectionStringMysql, ServerVersion.AutoDetect(connectionStringMysql)));
+
+
+
 //definindo a injeção de dependecia
 builder.Services.AddTransient<IPessoa, PessoaRepository>();
+
+
 
 var app = builder.Build();
 
