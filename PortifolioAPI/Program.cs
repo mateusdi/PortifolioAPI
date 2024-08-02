@@ -1,5 +1,7 @@
-using PortifolioAPI.Dados;
+
+
 using PortifolioAPI.Interfaces;
+using PortifolioAPI.Respositories;
 
 var builder = WebApplication.CreateBuilder(args);
 

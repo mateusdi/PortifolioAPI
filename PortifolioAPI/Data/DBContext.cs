@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PortifolioAPI.Model;
 
-namespace PortifolioAPI.Dados
+namespace PortifolioAPI.Data
 {
     public class DBContext : DbContext
     {
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -13,6 +14,7 @@ namespace PortifolioAPI.Dados
                 optionsBuilder.UseMySql(conexaoStr, ServerVersion.AutoDetect(conexaoStr));
             }
         }
+
 
         public DbSet<Pessoa> Pessoas { get; set; }
     }

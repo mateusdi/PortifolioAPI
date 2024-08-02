@@ -1,6 +1,6 @@
 ﻿using PortifolioAPI.Model;
 
-namespace PortifolioAPI.Models
+namespace PortifolioAPI.Interfaces
 {
     public interface IPessoa
     {

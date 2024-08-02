@@ -1,7 +1,10 @@
-﻿using PortifolioAPI.Model;
-using PortifolioAPI.Models;
+﻿
+using PortifolioAPI.Data;
+using PortifolioAPI.Interfaces;
+using PortifolioAPI.Model;
 
-namespace PortifolioAPI.Dados
+
+namespace PortifolioAPI.Respositories
 {
     public class PessoaRepository : IPessoa
     {
