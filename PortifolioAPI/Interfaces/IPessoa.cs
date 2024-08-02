@@ -4,7 +4,11 @@ namespace PortifolioAPI.Interfaces
 {
     public interface IPessoa
     {
-        void Add(Pessoa pessoa);
-        List<Pessoa> Get();
+        void Create(Pessoa pessoa);
+        Task<List<Pessoa>> GetAllAsync();
+        Task<Pessoa> GetByIdAsync(int id);
+        void Update(Pessoa pessoa);
+        void Delete(int id);
+
     }
 }

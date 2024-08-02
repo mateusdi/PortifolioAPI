@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using PortifolioAPI.Data;
 using PortifolioAPI.Interfaces;
 using PortifolioAPI.Model;
@@ -16,15 +17,32 @@ namespace PortifolioAPI.Respositories
             _context = context;
         }
 
-        public void Add(Pessoa pessoa)
+        public void Create(Pessoa pessoa)
         {
             _context.Add(pessoa);
-            _context.SaveChanges();
+            _context.SaveChangesAsync();
         }
 
-        public List<Pessoa> Get()
+        public void Delete(int id)
         {
-            return _context.Pessoas.ToList();
+            throw new NotImplementedException();
         }
+
+        public async Task<List<Pessoa>> GetAllAsync()
+        {
+            return await _context.Pessoas.ToListAsync();
+        }
+
+        public async Task<Pessoa> GetByIdAsync(int id)
+        {
+            return await _context.Pessoas.FindAsync(id);
+        }
+
+        public void Update(Pessoa pessoa)
+        {
+            throw new NotImplementedException();
+        }
+
+      
     }
 }
