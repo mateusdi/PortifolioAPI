@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PortifolioAPI.Data;
 using PortifolioAPI.Interfaces;
-using PortifolioAPI.Model;
+using PortifolioAPI.Models;
 
 
 
@@ -17,7 +17,7 @@ namespace PortifolioAPI.Respositories
             _context = context;
         }
 
-        public void Create(Pessoa pessoa)
+        public async void Create(Pessoa pessoa)
         {
             _context.Add(pessoa);
             _context.SaveChangesAsync();

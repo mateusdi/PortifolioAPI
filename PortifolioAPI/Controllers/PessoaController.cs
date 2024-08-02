@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PortifolioAPI.Data;
+
 using PortifolioAPI.Interfaces;
-using PortifolioAPI.Model;
+
+using PortifolioAPI.Models;
 
 
 namespace PortifolioAPI.Controllers
@@ -33,13 +34,18 @@ namespace PortifolioAPI.Controllers
 
         //Insere 1 pessoa
         [HttpPost]
-        public async Task<ActionResult<Pessoa>> PostPessoa(Pessoa pessoa)
+        public async Task<ActionResult<PessoaDTO>> PostPessoa(PessoaDTO pessoaDto)
+
         {
+            //convertendo manualmente o DTO para a entidade. Posso fazer com AutoMapper
+            Pessoa pessoa = new Pessoa();
+            pessoa.email = pessoaDto.email;
+
             _pessoaRepository.Create(pessoa);
+            
 
             //existe uma convenção para retornar a referencia(location) da entidade criada
             return CreatedAtAction(nameof(GetPessoaById), new { id = pessoa.id }, pessoa);
-
         }
     }
 }

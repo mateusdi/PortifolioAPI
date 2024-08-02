@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PortifolioAPI.Model;
+using PortifolioAPI.Models;
 
 namespace PortifolioAPI.Data
 {

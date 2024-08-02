@@ -1,4 +1,5 @@
-﻿using PortifolioAPI.Model;
+﻿
+using PortifolioAPI.Models;
 
 namespace PortifolioAPI.Interfaces
 {

@@ -1,16 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PortifolioAPI.Model
+namespace PortifolioAPI.Models
 {
     [Table("pessoa")]
     public class Pessoa
     {
         [Key]
         public int id { get; set; }
-
-        public string nome{ get; set; }
-
+        public string? nome{ get; set; }
         [EmailAddress]
         public string email { get; set; }
 
@@ -28,6 +26,7 @@ namespace PortifolioAPI.Model
           public string email { get; set; }
         */
 
+        public Pessoa() { }
 
         public Pessoa(int id, string nome, string email)
         {
@@ -35,7 +34,5 @@ namespace PortifolioAPI.Model
             this.nome = nome;
             this.email = email;
         }
-
-
     }
 }
