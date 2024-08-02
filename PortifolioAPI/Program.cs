@@ -1,5 +1,5 @@
 using PortifolioAPI.Dados;
-using PortifolioAPI.Models;
+using PortifolioAPI.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //definindo a injeção de dependecia
-builder.Services.AddTransient<IPessoa,PessoaRepository>();
+builder.Services.AddTransient<IPessoa, PessoaRepository>();
 
 var app = builder.Build();
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PortifolioAPI.Dados;
-using PortifolioAPI.Models;
+using PortifolioAPI.Interfaces;
 
 namespace PortifolioAPI.Controllers
 {
