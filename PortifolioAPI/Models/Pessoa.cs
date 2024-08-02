@@ -29,5 +29,13 @@ namespace PortifolioAPI.Model
         */
 
 
+        public Pessoa(int id, string nome, string email)
+        {
+            this.id = id;
+            this.nome = nome;
+            this.email = email;
+        }
+
+
     }
 }

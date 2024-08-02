@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PortifolioAPI.Interfaces;
+using PortifolioAPI.Model;
 
 
 namespace PortifolioAPI.Controllers
@@ -20,6 +21,13 @@ namespace PortifolioAPI.Controllers
         {
             var pessoas = _pessoaRepository.Get();
             return Ok(pessoas);
+        }
+
+        [HttpPost]
+        public ActionResult<Pessoa> PostTodoItem(Pessoa pessoa)
+        {
+            _pessoaRepository.Add(pessoa);
+            return Ok();
         }
     }
 }
