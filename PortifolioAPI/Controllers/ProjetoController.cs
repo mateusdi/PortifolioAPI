@@ -16,7 +16,6 @@ namespace PortifolioAPI.Controllers
             _genericRepository = genericRepository ?? throw new ArgumentNullException(nameof(genericRepository));
         }
 
-        
         [HttpGet(Name = "GetAllProjetos")]
         public async Task<ActionResult<List<Projeto>>> GetAll()
         {
@@ -31,7 +30,6 @@ namespace PortifolioAPI.Controllers
 
         [HttpPost]
         public async Task<ActionResult<PessoaDTO>> Create(Projeto projeto)
-
         {
             _genericRepository.Create(projeto);
             //existe uma convenção para retornar a referencia(location) da entidade criada

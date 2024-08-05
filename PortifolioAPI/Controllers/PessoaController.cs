@@ -19,8 +19,8 @@ namespace PortifolioAPI.Controllers
         }
 
         [HttpGet(Name = "GetAllPessoas")]
-        public async Task<ActionResult<List<Pessoa>>> GetAll() 
-        { 
+        public async Task<ActionResult<List<Pessoa>>> GetAll()
+        {
             return await _genericRepository.GetAllAsync();
         }
 
@@ -39,7 +39,7 @@ namespace PortifolioAPI.Controllers
             pessoa.email = pessoaDto.email;
 
             _genericRepository.Create(pessoa);
-            
+
             //existe uma convenção para retornar a referencia(location) da entidade criada
             return CreatedAtAction(nameof(GetPessoaById), new { id = pessoa.id }, pessoa);
         }

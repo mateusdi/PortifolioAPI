@@ -3,10 +3,7 @@
 using Microsoft.EntityFrameworkCore;
 using PortifolioAPI.Data;
 using PortifolioAPI.Interfaces;
-using PortifolioAPI.Models;
 using PortifolioAPI.Repositories;
-
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,19 +23,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DBContext>(opt =>
     opt.UseInMemoryDatabase("portifolio"));
 
-
 //definindo a injeção de dependecia do repositório Pessoa
 //builder.Services.AddTransient<IPessoa, PessoaRepository>();
 
 //DI da interface generica
 //builder.Services.AddTransient<IGenerica<Projeto>, GenericoRepository<Projeto>>();
-
 builder.Services.AddScoped(typeof(IGenerica<>), typeof(GenericoRepository<>));
-
-
-
-
-
 
 var app = builder.Build();
 

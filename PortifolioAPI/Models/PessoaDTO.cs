@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace PortifolioAPI.Models
+﻿namespace PortifolioAPI.Models
 {
     //DTO, Data Transfer Object.
     //Esse tipo de classe é um padrãp usado para transferencia de alguns dados especificos,

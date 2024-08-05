@@ -8,7 +8,7 @@ namespace PortifolioAPI.Models
     {
         [Key]
         public int id { get; set; }
-        public string? nome{ get; set; }
+        public string? nome { get; set; }
         [EmailAddress]
         public string email { get; set; }
 
