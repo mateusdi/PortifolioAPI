@@ -1,7 +1,7 @@
 
 
 using Microsoft.EntityFrameworkCore;
-using PortifolioAPI.Data;
+using PortifolioAPI.infrastructure;
 using PortifolioAPI.Interfaces;
 using PortifolioAPI.Repositories;
 

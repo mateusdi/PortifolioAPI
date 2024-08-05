@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PortifolioAPI.Data;
+using PortifolioAPI.infrastructure;
 using PortifolioAPI.Interfaces;
 
 namespace PortifolioAPI.Repositories
@@ -25,16 +25,19 @@ namespace PortifolioAPI.Repositories
 
         public async void Delete(int id)
         {
+            try
+            {
+                var todoItem = await _dbSet.FindAsync(id);
+                if (todoItem == null)
+                {
+                    throw new Exception("id não encontrado!");
+                }
 
-            var todoItem = await _dbSet.FindAsync(id);
-            if (todoItem == null)
-            {
-                //lanço exeption
-            }
-            else
-            {
                 _dbSet.Remove(todoItem);
                 await _context.SaveChangesAsync();
+            }
+            catch (Exception e) {
+                Console.WriteLine(e.ToString());
             }
         }
 
