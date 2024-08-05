@@ -10,6 +10,7 @@ namespace PortifolioAPI.Interfaces
         Task<Pessoa> GetByIdAsync(int id);
         void Update(Pessoa pessoa);
         void Delete(int id);
+        
 
     }
 }
