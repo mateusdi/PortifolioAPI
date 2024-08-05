@@ -50,5 +50,13 @@ namespace PortifolioAPI.Controllers
             _genericRepository.Delete(id);
             return Ok();
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutTodoItem(int id, Pessoa pessoa)
+        {
+            _genericRepository.Update(pessoa);
+            //retornar alguma coisa se for sucesso
+            return CreatedAtAction(nameof(Pessoa), new { id = pessoa.id }, pessoa);
+        }
     }
 }

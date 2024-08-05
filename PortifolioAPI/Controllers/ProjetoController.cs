@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PortifolioAPI.Interfaces;
 using PortifolioAPI.Models;
 
@@ -40,7 +41,16 @@ namespace PortifolioAPI.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             _genericRepository.Delete(id);
-            return Ok();
+            //retornar alguma coisa se for sucesso
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutTodoItem(int id, Projeto projeto)
+        {
+            _genericRepository.Update(projeto);
+            //retornar alguma coisa se for sucesso
+            return CreatedAtAction(nameof(GetById), new { id = projeto.id }, projeto);
         }
     }
 }

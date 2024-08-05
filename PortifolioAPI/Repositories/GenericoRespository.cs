@@ -51,9 +51,11 @@ namespace PortifolioAPI.Repositories
             return await _dbSet.FindAsync(id);
         }
 
+        //tratar melhor isso
         public void Update(TEntity model)
         {
-            throw new NotImplementedException();
+        _dbSet.Entry(model).State = EntityState.Modified;
+        _context.SaveChangesAsync();
         }
     }
 }
