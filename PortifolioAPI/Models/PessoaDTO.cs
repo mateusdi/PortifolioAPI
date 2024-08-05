@@ -8,8 +8,6 @@ namespace PortifolioAPI.Models
     public class PessoaDTO
     {
         public int id { get; set; }
-        
-        
         public string email { get; set; }
 
 

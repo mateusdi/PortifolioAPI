@@ -3,22 +3,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PortifolioAPI.Models
 {
-    [Table("pessoa")]
-    public class Pessoa
+    [Table("projeto")]
+    public class Projeto
     {
         [Key]
         public int id { get; set; }
-        public string? nome{ get; set; }
-        [EmailAddress]
-        public string email { get; set; }
+        public string? nome { get; set; }
+        public string? descricao { get; set; }
 
-        public Pessoa() { }
+        public Projeto() { }
 
-        public Pessoa(int id, string nome, string email)
+        public Projeto(int id, string nome, string descricao)
         {
             this.id = id;
             this.nome = nome;
-            this.email = email;
+            this.descricao = descricao;
         }
     }
 }

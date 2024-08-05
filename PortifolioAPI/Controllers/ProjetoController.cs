@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
 using PortifolioAPI.Interfaces;
-
 using PortifolioAPI.Models;
 
 
@@ -9,39 +7,35 @@ namespace PortifolioAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class PessoaController : ControllerBase
+    public class ProjetoController : ControllerBase
     {
-        private readonly IGenerica<Pessoa> _genericRepository;
+        private readonly IGenerica<Projeto> _genericRepository;
 
-        public PessoaController(IGenerica<Pessoa> genericRepository)
+        public ProjetoController(IGenerica<Projeto> genericRepository)
         {
             _genericRepository = genericRepository ?? throw new ArgumentNullException(nameof(genericRepository));
         }
 
-        [HttpGet(Name = "GetAllPessoas")]
-        public async Task<ActionResult<List<Pessoa>>> GetAll() 
-        { 
+        
+        [HttpGet(Name = "GetAllProjetos")]
+        public async Task<ActionResult<List<Projeto>>> GetAll()
+        {
             return await _genericRepository.GetAllAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Pessoa>> GetPessoaById(int id)
+        public async Task<ActionResult<Projeto>> GetById(int id)
         {
             return await _genericRepository.GetByIdAsync(id);
         }
 
         [HttpPost]
-        public async Task<ActionResult<PessoaDTO>> Create(PessoaDTO pessoaDto)
+        public async Task<ActionResult<PessoaDTO>> Create(Projeto projeto)
 
         {
-            //convertendo manualmente o DTO para a entidade. Posso fazer com AutoMapper
-            Pessoa pessoa = new Pessoa();
-            pessoa.email = pessoaDto.email;
-
-            _genericRepository.Create(pessoa);
-            
+            _genericRepository.Create(projeto);
             //existe uma convenção para retornar a referencia(location) da entidade criada
-            return CreatedAtAction(nameof(GetPessoaById), new { id = pessoa.id }, pessoa);
+            return CreatedAtAction(nameof(GetById), new { id = projeto.id }, projeto);
         }
 
         [HttpDelete("{id}")]
