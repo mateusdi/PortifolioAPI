@@ -27,13 +27,13 @@ namespace PortifolioAPI.Repositories
         {
             try
             {
-                var todoItem = await _dbSet.FindAsync(id);
-                if (todoItem == null)
+                var item = await _dbSet.FindAsync(id);
+                if (item == null)
                 {
                     throw new Exception("id não encontrado!");
                 }
 
-                _dbSet.Remove(todoItem);
+                _dbSet.Remove(item);
                 await _context.SaveChangesAsync();
             }
             catch (Exception e) {

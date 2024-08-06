@@ -1,4 +1,4 @@
-﻿namespace PortifolioAPI.Models
+﻿namespace PortifolioAPI.Models.DTOs
 {
     //DTO, Data Transfer Object.
     //Esse tipo de classe é um padrãp usado para transferencia de alguns dados especificos,

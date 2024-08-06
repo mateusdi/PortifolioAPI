@@ -16,7 +16,7 @@ builder.Services.AddSwaggerGen();
 
 //conexão com o banco de dados
 //var connectionStringMysql = builder.Configuration.GetConnectionString("ConnectionMysql");
-//builder.Services.AddDbContext<DBContext>(option=> option.UseMySql(connectionStringMysql, ServerVersion.AutoDetect(connectionStringMysql)));
+//builder.Services.AddDbContext<DBContext>(option => option.UseMySql(connectionStringMysql, ServerVersion.AutoDetect(connectionStringMysql)));
 
 
 //Contexto usando o banco em memória, para desenvolvimento.

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PortifolioAPI.Interfaces;
 using PortifolioAPI.Models;
+using PortifolioAPI.Models.DTOs;
 
 
 namespace PortifolioAPI.Controllers
