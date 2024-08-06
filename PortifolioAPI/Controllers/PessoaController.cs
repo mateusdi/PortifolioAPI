@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
-using PortifolioAPI.Interfaces;
-
-using PortifolioAPI.Models;
+using PortifolioAPI.Domain.DTOs;
+using PortifolioAPI.Domain.Interfaces;
+using PortifolioAPI.Domain.Models;
 
 
 namespace PortifolioAPI.Controllers

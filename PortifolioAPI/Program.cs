@@ -1,9 +1,9 @@
 
 
 using Microsoft.EntityFrameworkCore;
-using PortifolioAPI.infrastructure;
-using PortifolioAPI.Interfaces;
-using PortifolioAPI.Repositories;
+using PortifolioAPI.Infrastructure.Context;
+using PortifolioAPI.Domain.Interfaces;
+using PortifolioAPI.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
