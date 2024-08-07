@@ -16,11 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PortifolioAPI.Domain\Portifolio.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="EntitiesConfiguration\" />
+    <ProjectReference Include="..\Portifolio.Domain\Portifolio.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,13 +11,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.7" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Portifolio.Application\Portifolio.Application.csproj" />
-    <ProjectReference Include="..\PortifolioAPI.Domain\Portifolio.Domain.csproj" />
-    <ProjectReference Include="..\PortifolioAPI.Infrastructure\Portifolio.Infra.Data.csproj" />
+    <ProjectReference Include="..\Portifolio.Domain\Portifolio.Domain.csproj" />
+    <ProjectReference Include="..\Portifolio.Infra.Data\Portifolio.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>

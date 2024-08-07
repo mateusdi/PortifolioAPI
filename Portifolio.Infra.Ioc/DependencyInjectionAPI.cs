@@ -17,6 +17,7 @@ namespace Portifolio.Infra.Ioc
             opt.UseInMemoryDatabase("portifolio"));
 
             services.AddScoped<IPessoa, PessoaRepository>();
+            services.AddScoped<IProjeto, ProjetoRepository>();
 
 
             return services;
