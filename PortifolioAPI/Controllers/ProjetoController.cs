@@ -1,46 +1,45 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PortifolioAPI.Domain.DTOs;
-using PortifolioAPI.Domain.Interfaces;
-using PortifolioAPI.Domain.Models;
+using Portifolio.Domain.DTOs;
+using Portifolio.Domain.Entities;
+using Portifolio.Domain.Interfaces;
 
-
-namespace PortifolioAPI.Controllers
+namespace Portifolio.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class ProjetoController : ControllerBase
     {
-        private readonly IGenerica<Projeto> _genericRepository;
+        private readonly IProjeto _projetoRepository;
 
-        public ProjetoController(IGenerica<Projeto> genericRepository)
+        public ProjetoController(IProjeto genericRepository)
         {
-            _genericRepository = genericRepository ?? throw new ArgumentNullException(nameof(genericRepository));
+            _projetoRepository = genericRepository ?? throw new ArgumentNullException(nameof(genericRepository));
         }
 
         [HttpGet(Name = "GetAllProjetos")]
         public async Task<ActionResult<List<Projeto>>> GetAll()
         {
-            return await _genericRepository.GetAllAsync();
+            return await _projetoRepository.GetAllAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Projeto>> GetById(int id)
         {
-            return await _genericRepository.GetByIdAsync(id);
+            return await _projetoRepository.GetByIdAsync(id);
         }
 
         [HttpPost]
-        public async Task<ActionResult<PessoaDTO>> Create(Projeto projeto)
+        public async Task<ActionResult<Projeto>> Create(Projeto projeto)
         {
-            _genericRepository.Create(projeto);
+            _projetoRepository.Create(projeto);
             //existe uma convenção para retornar a referencia(location) da entidade criada
-            return CreatedAtAction(nameof(GetById), new { id = projeto.id }, projeto);
+            return CreatedAtAction(nameof(GetById), new { projeto.id }, projeto);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            _genericRepository.Delete(id);
+            _projetoRepository.Delete(id);
             //retornar alguma coisa se for sucesso
             return NoContent();
         }
@@ -48,9 +47,8 @@ namespace PortifolioAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTodoItem(int id, Projeto projeto)
         {
-            _genericRepository.Update(projeto);
-            //retornar alguma coisa se for sucesso
-            return CreatedAtAction(nameof(GetById), new { id = projeto.id }, projeto);
+            _projetoRepository.Update(projeto);
+            return CreatedAtAction(nameof(GetById), new { projeto.id }, projeto);
         }
     }
 }

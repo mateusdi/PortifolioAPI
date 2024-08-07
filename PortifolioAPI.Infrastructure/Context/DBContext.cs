@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PortifolioAPI.Domain.Models;
+using Portifolio.Domain.Entities;
 
-namespace PortifolioAPI.Infrastructure.Context
+namespace Portifolio.Infra.Data.Context
 {
     public class DBContext : DbContext
     {
@@ -9,8 +9,10 @@ namespace PortifolioAPI.Infrastructure.Context
         {
 
         }
-        
+
         public DbSet<Projeto> Projetos { get; set; }
         public DbSet<Pessoa> Pessoas { get; set; }
+
+      
     }
 }

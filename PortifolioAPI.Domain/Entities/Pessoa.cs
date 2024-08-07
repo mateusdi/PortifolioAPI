@@ -1,23 +1,24 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PortifolioAPI.Domain.Models
+namespace Portifolio.Domain.Entities
 {
-    [Table("projeto")]
-    public class Projeto
+    [Table("pessoa")]
+    public class Pessoa
     {
         [Key]
         public int id { get; set; }
         public string? nome { get; set; }
-        public string? descricao { get; set; }
+        [EmailAddress]
+        public string email { get; set; }
 
-        public Projeto() { }
+        public Pessoa() { }
 
-        public Projeto(int id, string nome, string descricao)
+        public Pessoa(int id, string nome, string email)
         {
             this.id = id;
             this.nome = nome;
-            this.descricao = descricao;
+            this.email = email;
         }
     }
 }

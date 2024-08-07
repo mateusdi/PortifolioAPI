@@ -1,4 +1,4 @@
-﻿namespace PortifolioAPI.Domain.DTOs
+﻿namespace Portifolio.Domain.DTOs
 {
     //DTO, Data Transfer Object.
     //Esse tipo de classe é um padrãp usado para transferencia de alguns dados especificos,

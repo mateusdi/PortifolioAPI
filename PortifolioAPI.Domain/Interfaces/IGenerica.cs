@@ -1,6 +1,4 @@
-﻿
-
-namespace PortifolioAPI.Domain.Interfaces
+﻿namespace Portifolio.Domain.Interfaces
 {
     public interface IGenerica<T> where T : class
     {

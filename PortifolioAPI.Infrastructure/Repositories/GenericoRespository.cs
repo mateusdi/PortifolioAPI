@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PortifolioAPI.Infrastructure.Context;
-using PortifolioAPI.Domain.Interfaces;
+using Portifolio.Domain.Interfaces;
+using Portifolio.Infra.Data.Context;
 
-namespace PortifolioAPI.Infrastructure.Repositories
+namespace Portifolio.Infra.Data.Repositories
 {
     public class GenericoRepository<TEntity> : IGenerica<TEntity> where TEntity : class
     {
@@ -36,7 +36,8 @@ namespace PortifolioAPI.Infrastructure.Repositories
                 _dbSet.Remove(item);
                 await _context.SaveChangesAsync();
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 Console.WriteLine(e.ToString());
             }
         }
@@ -54,8 +55,8 @@ namespace PortifolioAPI.Infrastructure.Repositories
         //tratar melhor isso
         public void Update(TEntity model)
         {
-        _dbSet.Entry(model).State = EntityState.Modified;
-        _context.SaveChangesAsync();
+            _dbSet.Entry(model).State = EntityState.Modified;
+            _context.SaveChangesAsync();
         }
     }
 }

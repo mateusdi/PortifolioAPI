@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PortifolioAPI.Infrastructure\PortifolioAPI.Infrastructure.csproj" />
+    <ProjectReference Include="..\Portifolio.Infra.Ioc\Portifolio.Infra.Ioc.csproj" />
   </ItemGroup>
 
 </Project>
