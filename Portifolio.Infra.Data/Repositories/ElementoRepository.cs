@@ -10,7 +10,7 @@ namespace Portifolio.Infra.Data.Repositories
         private List<Elemento> ElementosQueue = new();
 
         //organizo a lista e insiro na listaFila 
-        public void Create(List<Elemento> elementos)
+        public List<Elemento> Create(List<Elemento> elementos)
         {
             elementos = ListaService.OrganizarLista(elementos);
 
@@ -19,18 +19,14 @@ namespace Portifolio.Infra.Data.Repositories
                 //travo para evitar problemas ao gravar na lista simultaneo
                 lock (ElementosQueue)
                 {
-                     ElementosQueue.Add(elementos[i]);
+                    ElementosQueue.Add(elementos[i]);
                 }
-                
+
             }
+            return elementos;
         }
 
-        public List<Elemento> GetAll()
-        {
-            return ElementosQueue;
-        }
-
-
+        
     }
 
 

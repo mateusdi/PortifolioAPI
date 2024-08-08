@@ -5,7 +5,7 @@ namespace Portifolio.Infra.Data.Interfaces
 {
     public interface IElementoRepository
     {
-        void Create(List<Elemento> elemento);
+        List<Elemento> Create(List<Elemento> elemento);
 
     }
 }
