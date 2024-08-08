@@ -1,14 +1,27 @@
-﻿namespace Portifolio.Domain.DTOs
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Portifolio.Domain.DTOs
 {
-    //DTO, Data Transfer Object.
-    //Esse tipo de classe é um padrãp usado para transferencia de alguns dados especificos,
-    //como se fosse uma espécie de filtragem
-    public class PessoaDTO
+    //POST PARA INSERIR 
+    public class PessoaDTO 
     {
-        public int id { get; set; }
+        //para o Post Criar pessoa
+        [Required]
+        [StringLength(200)]
+        public string nome { get; set; }
+        [Required]
+        [EmailAddress]
+        [StringLength(200)]
         public string email { get; set; }
+        [Required]
+        [MinLength(6)]
+        [StringLength(200)]
+        public string senha { get; set; }
+    }
 
-
-
+    //POST PARA LISTAR
+    public class PessoaListDTO : PessoaDTO
+    {
+        public int id { get; set; } 
     }
 }

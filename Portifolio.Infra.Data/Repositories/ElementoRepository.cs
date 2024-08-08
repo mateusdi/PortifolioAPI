@@ -23,6 +23,12 @@ namespace Portifolio.Infra.Data.Repositories
                 }
 
             }
+            //organizo a queue
+            //lock (ElementosQueue)
+            //{
+            //    ElementosQueue = ListaService.OrganizarLista(ElementosQueue);
+            //}
+
             return elementos;
         }
 

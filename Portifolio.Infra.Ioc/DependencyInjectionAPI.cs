@@ -3,6 +3,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Portifolio.Application.Mappings;
 using Portifolio.Domain.Interfaces;
 using Portifolio.Infra.Data.Context;
 using Portifolio.Infra.Data.Interfaces;
@@ -26,8 +27,11 @@ namespace Portifolio.Infra.Ioc
             services.AddScoped<IProjeto, ProjetoRepository>();
 
             services.AddSingleton<IElementoRepository, ElementoRepository>();
-            
-            
+
+
+            //automapper
+            services.AddAutoMapper(typeof(EntitiesTODTOMappingProfile));
+
             return services;
         }
     }

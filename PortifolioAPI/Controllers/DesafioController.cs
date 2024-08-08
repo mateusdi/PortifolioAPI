@@ -35,8 +35,5 @@ namespace Portifolio.API.Controllers
            
             return Ok(_elementoRepository.Create(elementos));
         }
-
-   
-
     }
 }

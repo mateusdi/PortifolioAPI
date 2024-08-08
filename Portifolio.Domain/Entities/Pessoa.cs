@@ -8,17 +8,20 @@ namespace Portifolio.Domain.Entities
     {
         [Key]
         public int id { get; set; }
-        public string? nome { get; set; }
+        public string nome { get; set; }
         [EmailAddress]
         public string email { get; set; }
-
+        public string senha { get; set; }
+        public List<Projeto> projetos { get; set; }
         public Pessoa() { }
 
-        public Pessoa(int id, string nome, string email)
+        public Pessoa(int id, string nome, string email, string senha, List<Projeto> projetos)
         {
             this.id = id;
             this.nome = nome;
             this.email = email;
+            this.senha = senha;
+            this.projetos = projetos;
         }
     }
 }

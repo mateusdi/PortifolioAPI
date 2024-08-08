@@ -11,6 +11,5 @@ namespace Portifolio.Domain.Entities
         public string nome { get; set; }
         public int tipo { get; set; }
         public string mensagem { get; set; }
-
     }
 }

@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Portifolio.Domain.DTOs;
 using Portifolio.Domain.Entities;
 using Portifolio.Domain.Interfaces;
+using Portifolio.Infra.Data.Repositories;
 
 namespace Portifolio.Controllers
 {
@@ -10,35 +12,34 @@ namespace Portifolio.Controllers
     public class PessoaController : ControllerBase
     {
         private readonly IPessoa _pessoaRepository;
+        private readonly IMapper _mapper;
 
-        public PessoaController(IPessoa genericRepository)
+        public PessoaController(IPessoa genericRepository, IMapper mapper)
         {
-            _pessoaRepository = genericRepository ?? throw new ArgumentNullException(nameof(genericRepository));
+            _mapper = mapper;
+            _pessoaRepository = genericRepository;
         }
 
         [HttpGet(Name = "GetAllPessoas")]
         public async Task<ActionResult<List<Pessoa>>> GetAll()
         {
-            return await _pessoaRepository.GetAllAsync();
+            var pessoas = await _pessoaRepository.GetAllAsync();
+            return Ok(_mapper.Map<IEnumerable<PessoaDTO>>(pessoas));
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Pessoa>> GetPessoaById(int id)
+        public async Task<ActionResult> GetPessoaById(int id)
         {
-            return await _pessoaRepository.GetByIdAsync(id);
+            var pessoa = _pessoaRepository.GetByIdAsync(id);
+            var pessoaDTO = _mapper.Map<PessoaListDTO>(pessoa);
+            return Ok(pessoaDTO);
         }
 
         [HttpPost]
         public async Task<ActionResult<PessoaDTO>> Create(PessoaDTO pessoaDto)
         {
-            //convertendo manualmente o DTO para a entidade. Posso fazer com AutoMapper
-            Pessoa pessoa = new Pessoa();
-            pessoa.email = pessoaDto.email;
-
-            _pessoaRepository.Create(pessoa);
-
-            //existe uma convenção para retornar a referencia(location) da entidade criada
-            return CreatedAtAction(nameof(GetPessoaById), new { pessoa.id }, pessoa);
+            _pessoaRepository.Create(_mapper.Map<Pessoa>(pessoaDto));
+            return Ok();
         }
 
         [HttpDelete("{id}")]
@@ -49,11 +50,15 @@ namespace Portifolio.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTodoItem(int id, Pessoa pessoa)
+        public async Task<IActionResult> PutTodoItem()
         {
-            _pessoaRepository.Update(pessoa);
-            //retornar alguma coisa se for sucesso
-            return CreatedAtAction(nameof(Pessoa), new { pessoa.id }, pessoa);
+            return Ok();
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PatchTodoItem()
+        {
+            return Ok();
         }
     }
 }

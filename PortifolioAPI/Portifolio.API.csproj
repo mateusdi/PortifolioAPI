@@ -9,18 +9,22 @@
   <ItemGroup>
     <Compile Remove="Infrastructure\**" />
     <Compile Remove="Interfaces\**" />
+    <Compile Remove="Mapping\**" />
     <Compile Remove="Models\**" />
     <Compile Remove="Repositories\**" />
     <Content Remove="Infrastructure\**" />
     <Content Remove="Interfaces\**" />
+    <Content Remove="Mapping\**" />
     <Content Remove="Models\**" />
     <Content Remove="Repositories\**" />
     <EmbeddedResource Remove="Infrastructure\**" />
     <EmbeddedResource Remove="Interfaces\**" />
+    <EmbeddedResource Remove="Mapping\**" />
     <EmbeddedResource Remove="Models\**" />
     <EmbeddedResource Remove="Repositories\**" />
     <None Remove="Infrastructure\**" />
     <None Remove="Interfaces\**" />
+    <None Remove="Mapping\**" />
     <None Remove="Models\**" />
     <None Remove="Repositories\**" />
   </ItemGroup>

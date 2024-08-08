@@ -45,10 +45,15 @@ namespace Portifolio.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTodoItem(int id, Projeto projeto)
+        public async Task<IActionResult> PutTodoItem()
         {
-            _projetoRepository.Update(projeto);
-            return CreatedAtAction(nameof(GetById), new { projeto.id }, projeto);
+            return Ok();
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> PatchTodoItem()
+        {
+            return Ok();
         }
     }
 }
