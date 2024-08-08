@@ -7,6 +7,7 @@ using Portifolio.Infra.Ioc;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Chamo o método estático com as configs do banco e as injeções de dependência
 builder.Services.AddInfrastructureAPI(builder.Configuration);
 
 
@@ -16,28 +17,14 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-
-//conexão com o banco de dados
-//var connectionStringMysql = builder.Configuration.GetConnectionString("ConnectionMysql");
-//builder.Services.AddDbContext<DBContext>(option => option.UseMySql(connectionStringMysql, ServerVersion.AutoDetect(connectionStringMysql)));
-
-
-//Contexto usando o banco em memória, para desenvolvimento.
-//builder.Services.AddDbContext<DBContext>(opt =>
-//    opt.UseInMemoryDatabase("portifolio"));
-
-//builder.Services.AddScoped(typeof(IGenerica<>), typeof(GenericoRepository<>));
-
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
 app.UseHttpsRedirection();
 

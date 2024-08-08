@@ -17,10 +17,10 @@ namespace Portifolio.Infra.Data.Repositories
             _dbSet = _context.Set<TEntity>();
         }
 
-        public void Create(TEntity model)
+        public async void Create(TEntity model)
         {
             _dbSet.Add(model);
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async void Delete(int id)

@@ -19,8 +19,8 @@ namespace Portifolio.Infra.Data.Repositories
 
         public async void Create(Pessoa pessoa)
         {
-            _context.Pessoas.Add(pessoa);
-            await _context.SaveChangesAsync();
+             _context.Pessoas.Add(pessoa);
+             await _context.SaveChangesAsync();
         }
 
         public async void Delete(int id)  
