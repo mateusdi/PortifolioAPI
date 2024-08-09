@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 using Portifolio.Domain.DTOs;
 using Portifolio.Domain.Entities;
 using Portifolio.Domain.Interfaces;
+using Portifolio.Infra.Data.Repositories;
 
 namespace Portifolio.Controllers
 {
@@ -10,49 +13,60 @@ namespace Portifolio.Controllers
     public class ProjetoController : ControllerBase
     {
         private readonly IProjeto _projetoRepository;
+        private readonly IMapper _mapper;
 
-        public ProjetoController(IProjeto genericRepository)
+        public ProjetoController(IProjeto genericRepository, IMapper mapper)
         {
-            _projetoRepository = genericRepository ?? throw new ArgumentNullException(nameof(genericRepository));
+            _mapper = mapper;
+            _projetoRepository = genericRepository;
         }
 
         [HttpGet(Name = "GetAllProjetos")]
         public async Task<ActionResult<List<Projeto>>> GetAll()
         {
-            return await _projetoRepository.GetAllAsync();
+            var projetos = await _projetoRepository.GetAllAsync();
+            return Ok(_mapper.Map<IEnumerable<ProjetoListDTO>>(projetos));
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Projeto>> GetById(int id)
         {
-            return await _projetoRepository.GetByIdAsync(id);
+            var projeto = await _projetoRepository.GetByIdAsync(id);
+            return Ok(_mapper.Map<ProjetoListDTO>(projeto));
         }
 
         [HttpPost]
-        public async Task<ActionResult<Projeto>> Create(Projeto projeto)
+        public async Task<ActionResult<Projeto>> Create(ProjetoDTO projetoDto)
         {
-            _projetoRepository.Create(projeto);
-            //existe uma convenção para retornar a referencia(location) da entidade criada
-            return CreatedAtAction(nameof(GetById), new { projeto.id }, projeto);
+            await _projetoRepository.Create(_mapper.Map<Projeto>(projetoDto));
+            return Ok(projetoDto);
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            _projetoRepository.Delete(id);
+             await _projetoRepository.Delete(id);
             //retornar alguma coisa se for sucesso
             return NoContent();
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTodoItem()
+        public async Task<IActionResult> PutProjeto(int id, ProjetoDTO projetoDto)
         {
+            //atualiza a entidade toda
+            await _projetoRepository.Update(id, _mapper.Map<Projeto>(projetoDto));
             return Ok();
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> PatchTodoItem()
+        public async Task<IActionResult> PatchProjeto(int id, [FromBody] JsonPatchDocument<Projeto> patchDoc)
         {
+            //atualiza parcialmente a entidade
+            var projeto = await _projetoRepository.GetByIdAsync(id);
+
+            patchDoc.ApplyTo(projeto, ModelState);
+
+            await _projetoRepository.Update(id, projeto);
             return Ok();
         }
     }

@@ -17,17 +17,17 @@ namespace Portifolio.Infra.Data.Repositories
             _context = context;
         }
 
-        public async void Create(Pessoa pessoa)
+        public async Task Create(Pessoa pessoa)
         {
              _context.Pessoas.Add(pessoa);
              await _context.SaveChangesAsync();
         }
 
-        public async void Delete(int id)  
+        public async Task Delete(int id)  
         {
-                var item = await _context.Pessoas.FindAsync(id);
+                var pessoa = await _context.Pessoas.FindAsync(id);
 
-                _context.Pessoas.Remove(item);
+                _context.Pessoas.Remove(pessoa);
                 await _context.SaveChangesAsync();
         }
 
@@ -41,10 +41,20 @@ namespace Portifolio.Infra.Data.Repositories
             return await _context.Pessoas.FindAsync(id);
         }
 
-        public async void Update(Pessoa pessoa)
+        public async Task Update(int id, Pessoa pessoa)
         {
-            _context.Pessoas.Entry(pessoa).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            var existePessoa = await _context.Pessoas.FindAsync(id);
+
+            if (existePessoa != null)
+            {
+                if (pessoa.id == null)
+                {
+                    pessoa.id = id;
+                }
+                
+                 _context.Pessoas.Update(pessoa);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

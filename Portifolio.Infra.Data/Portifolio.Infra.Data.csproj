@@ -8,15 +8,44 @@
 
   <ItemGroup>
     <Compile Remove="Class1.cs" />
+    <Compile Remove="Context\ElementoDB.cs" />
+    <Compile Remove="Migrations\20240809180949_InicialMigration.cs" />
+    <Compile Remove="Migrations\20240809180949_InicialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20240809181459_InicialMigration.cs" />
+    <Compile Remove="Migrations\20240809181459_InicialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20240809181932_PirmeiroMigration.cs" />
+    <Compile Remove="Migrations\20240809181932_PirmeiroMigration.Designer.cs" />
+    <Compile Remove="Migrations\20240809182451_Init-DB.cs" />
+    <Compile Remove="Migrations\20240809182451_Init-DB.Designer.cs" />
+    <Compile Remove="Migrations\20240809191943_DbInit.cs" />
+    <Compile Remove="Migrations\20240809191943_DbInit.Designer.cs" />
+    <Compile Remove="Migrations\20240809192204_DbInit.cs" />
+    <Compile Remove="Migrations\20240809192204_DbInit.Designer.cs" />
+    <Compile Remove="Migrations\20240809200925_Novo.cs" />
+    <Compile Remove="Migrations\20240809200925_Novo.Designer.cs" />
+    <Compile Remove="Migrations\DBContextModelSnapshot.cs" />
+    <Compile Remove="Migrations\Migration.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.7">
+      <PrivateAssets>none</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Portifolio.Domain\Portifolio.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

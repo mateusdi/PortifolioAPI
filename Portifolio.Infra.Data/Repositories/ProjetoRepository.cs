@@ -2,11 +2,7 @@
 using Portifolio.Domain.Entities;
 using Portifolio.Domain.Interfaces;
 using Portifolio.Infra.Data.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Portifolio.Infra.Data.Repositories
 {
@@ -19,13 +15,13 @@ namespace Portifolio.Infra.Data.Repositories
             _context = context;
         }
 
-        public async void Create(Projeto projeto)
+        public async Task Create(Projeto projeto)
         {
             _context.Projetos.Add(projeto);
             await _context.SaveChangesAsync();
         }
 
-        public async void Delete(int id)
+        public async Task Delete(int id)
         {
             var item = await _context.Projetos.FindAsync(id);
 
@@ -43,10 +39,21 @@ namespace Portifolio.Infra.Data.Repositories
             return await _context.Projetos.FindAsync(id);
         }
 
-        public async void Update(Projeto projeto)
+        public async Task Update(int id, Projeto projeto)
         {
-            _context.Projetos.Entry(projeto).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            var existeProjeto = await _context.Projetos.FindAsync(id);
+            var existePessoa = await _context.Pessoas.FindAsync(projeto.pessoaId);
+
+            if (existeProjeto != null && existePessoa != null)
+            {
+                if (projeto.id == null)
+                {
+                    projeto.id = id;
+                }
+
+                _context.Projetos.Update(projeto);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

@@ -10,16 +10,19 @@ namespace Portifolio.Domain.Entities
         public int id { get; set; }
         public string? nome { get; set; }
         public string? descricao { get; set; }
-        
-        //vinculara chave da pessoa ao projeto public PessoaId ou Pessoa pessoa?
 
+        public int pessoaId {  get; set; }
+        public Pessoa pessoa { get; set; }
+        
         public Projeto() { }
 
-        public Projeto(int id, string nome, string descricao)
+        public Projeto(int id, string nome, string descricao, int pessoaId, Pessoa pessoa)
         {
             this.id = id;
             this.nome = nome;
             this.descricao = descricao;
+            this.pessoaId = pessoaId;
+            this.pessoa = pessoa;
         }
     }
 }

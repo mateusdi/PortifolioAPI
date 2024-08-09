@@ -4,10 +4,10 @@ namespace Portifolio.Domain.Interfaces
 {
     public interface IPessoa
     {
-        void Create(Pessoa pessoa);
+        Task Create(Pessoa pessoa);
         Task<List<Pessoa>> GetAllAsync();
         Task<Pessoa> GetByIdAsync(int id);
-        void Update(Pessoa pessoa);
-        void Delete(int id);
+        Task Update(int id, Pessoa pessoa);
+        Task Delete(int id);
     }
 }

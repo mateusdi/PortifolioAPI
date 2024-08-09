@@ -6,13 +6,16 @@ namespace Portifolio.Domain.Entities
     [Table("pessoa")]
     public class Pessoa
     {
-        [Key]
+        
+
         public int id { get; set; }
         public string nome { get; set; }
         [EmailAddress]
         public string email { get; set; }
-        public string senha { get; set; }
-        public List<Projeto> projetos { get; set; }
+        
+        public List<Projeto> projetos { get; set; } = new List<Projeto>(); //remover o alto acoplamento
+
+        public Usuario usuario { get; set; }
         public Pessoa() { }
 
         public Pessoa(int id, string nome, string email, string senha, List<Projeto> projetos)
@@ -20,7 +23,6 @@ namespace Portifolio.Domain.Entities
             this.id = id;
             this.nome = nome;
             this.email = email;
-            this.senha = senha;
             this.projetos = projetos;
         }
     }

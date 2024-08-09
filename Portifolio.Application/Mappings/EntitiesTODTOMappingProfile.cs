@@ -4,14 +4,16 @@ using Portifolio.Domain.Entities;
 
 namespace Portifolio.Application.Mappings
 {
-    public class EntitiesTODTOMappingProfile : Profile
+    public class EntitiesToDTOMappingProfile : Profile
     {
-        public EntitiesTODTOMappingProfile()
+        public EntitiesToDTOMappingProfile()
         {
             //para criar pessoa Post
             CreateMap<Pessoa, PessoaDTO>().ReverseMap();
-            //para criar pessoa Get
             CreateMap<Pessoa, PessoaListDTO>().ReverseMap();
+
+            CreateMap<Projeto, ProjetoDTO>().ReverseMap();
+            CreateMap<Projeto, ProjetoListDTO>().ReverseMap();
         }
     }
 }

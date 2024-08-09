@@ -20,17 +20,16 @@ namespace Portifolio.Infra.Ioc
 
 
             //conexão com o banco de dados
-            //var connectionStringMysql = builder.Configuration.GetConnectionString("ConnectionMysql");
-            //builder.Services.AddDbContext<DBContext>(option => option.UseMySql(connectionStringMysql, ServerVersion.AutoDetect(connectionStringMysql)));
+            //var connectionStringMysql = configuration.GetConnectionString("ConnectionMysql");
+            //services.AddDbContextPool<DBContext>(option => option.UseMySql(connectionStringMysql, ServerVersion.AutoDetect(connectionStringMysql)));
 
             services.AddScoped<IPessoa, PessoaRepository>();
             services.AddScoped<IProjeto, ProjetoRepository>();
 
             services.AddSingleton<IElementoRepository, ElementoRepository>();
 
-
             //automapper
-            services.AddAutoMapper(typeof(EntitiesTODTOMappingProfile));
+            services.AddAutoMapper(typeof(EntitiesToDTOMappingProfile));
 
             return services;
         }
