@@ -16,7 +16,7 @@ namespace Portifolio.Infra.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DBContext).Assembly);
+            //modelBuilder.ApplyConfigurationsFromAssembly(typeof(DBContext).Assembly);
         }
 
 

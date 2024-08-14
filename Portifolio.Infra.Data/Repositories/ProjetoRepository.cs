@@ -46,12 +46,8 @@ namespace Portifolio.Infra.Data.Repositories
 
             if (existeProjeto != null && existePessoa != null)
             {
-                if (projeto.id == null)
-                {
-                    projeto.id = id;
-                }
-
-                _context.Projetos.Update(projeto);
+                projeto.id = existeProjeto.id;
+                _context.Entry(existeProjeto).CurrentValues.SetValues(projeto);
                 await _context.SaveChangesAsync();
             }
         }

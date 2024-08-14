@@ -30,10 +30,9 @@ namespace Portifolio.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Elemento>> Create(List<Elemento> elementos)
+        public async Task<ActionResult<Elemento>> Create(Elemento elemento)
         {
-           
-            return Ok(_elementoRepository.Create(elementos));
+            return Ok(_elementoRepository.Create(elemento));
         }
     }
 }

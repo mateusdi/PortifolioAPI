@@ -9,6 +9,8 @@
   <ItemGroup>
     <Compile Remove="Class1.cs" />
     <Compile Remove="Context\ElementoDB.cs" />
+    <Compile Remove="Context\ElementosQueue.cs" />
+    <Compile Remove="Interfaces\IElementoRepository.cs" />
     <Compile Remove="Migrations\20240809180949_InicialMigration.cs" />
     <Compile Remove="Migrations\20240809180949_InicialMigration.Designer.cs" />
     <Compile Remove="Migrations\20240809181459_InicialMigration.cs" />
@@ -23,8 +25,13 @@
     <Compile Remove="Migrations\20240809192204_DbInit.Designer.cs" />
     <Compile Remove="Migrations\20240809200925_Novo.cs" />
     <Compile Remove="Migrations\20240809200925_Novo.Designer.cs" />
+    <Compile Remove="Migrations\20240813145323_initialCreate.cs" />
+    <Compile Remove="Migrations\20240813145323_initialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20240813172230_initialCreate.cs" />
+    <Compile Remove="Migrations\20240813172230_initialCreate.Designer.cs" />
     <Compile Remove="Migrations\DBContextModelSnapshot.cs" />
     <Compile Remove="Migrations\Migration.cs" />
+    <Compile Remove="Repositories\ElementoRepository.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,11 +40,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.7">
       <PrivateAssets>none</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
+    <PackageReference Include="System.Collections" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +54,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Interfaces\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 

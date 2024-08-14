@@ -15,7 +15,8 @@ namespace Portifolio.Infra.Data.EntitiesConfiguration
         {
             builder.HasAlternateKey(x => x.id);
             builder.Property(x => x.login).HasMaxLength(255).IsRequired();
-            builder.Property(x => x.password).HasMaxLength(50).IsRequired();
+            builder.Property(x => x.passwordHash).HasMaxLength(255).IsRequired();
+            builder.Property(x => x.passwordSalt).HasMaxLength(255).IsRequired();
 
             //para evitar que seja inserido mais de um
             builder.HasIndex(x => x.login).IsUnique();

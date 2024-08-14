@@ -6,13 +6,11 @@ namespace Portifolio.Domain.Entities
     [Table("pessoa")]
     public class Pessoa
     {
-        
-
         public int id { get; set; }
         public string nome { get; set; }
         [EmailAddress]
         public string email { get; set; }
-        
+    
         public List<Projeto> projetos { get; set; } = new List<Projeto>(); //remover o alto acoplamento
 
         public Usuario usuario { get; set; }

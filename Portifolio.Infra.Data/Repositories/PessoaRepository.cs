@@ -25,10 +25,10 @@ namespace Portifolio.Infra.Data.Repositories
 
         public async Task Delete(int id)  
         {
-                var pessoa = await _context.Pessoas.FindAsync(id);
+            var pessoa = await _context.Pessoas.FindAsync(id);
 
-                _context.Pessoas.Remove(pessoa);
-                await _context.SaveChangesAsync();
+            _context.Pessoas.Remove(pessoa);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<List<Pessoa>> GetAllAsync()
@@ -47,12 +47,8 @@ namespace Portifolio.Infra.Data.Repositories
 
             if (existePessoa != null)
             {
-                if (pessoa.id == null)
-                {
-                    pessoa.id = id;
-                }
-                
-                 _context.Pessoas.Update(pessoa);
+                pessoa.id = existePessoa.id;
+                _context.Entry(existePessoa).CurrentValues.SetValues(pessoa);
                 await _context.SaveChangesAsync();
             }
         }
