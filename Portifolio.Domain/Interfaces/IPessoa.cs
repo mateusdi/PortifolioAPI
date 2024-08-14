@@ -4,7 +4,7 @@ namespace Portifolio.Domain.Interfaces
 {
     public interface IPessoa
     {
-        Task Create(Pessoa pessoa);
+        Task<Pessoa> Create(Pessoa pessoa);
         Task<List<Pessoa>> GetAllAsync();
         Task<Pessoa> GetByIdAsync(int id);
         Task Update(int id, Pessoa pessoa);

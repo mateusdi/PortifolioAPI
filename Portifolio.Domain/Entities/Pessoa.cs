@@ -9,19 +9,21 @@ namespace Portifolio.Domain.Entities
         public int id { get; set; }
         public string nome { get; set; }
         [EmailAddress]
+
         public string email { get; set; }
     
-        public List<Projeto> projetos { get; set; } = new List<Projeto>(); //remover o alto acoplamento
+        public List<Projeto> projetos { get; set; } = new List<Projeto>(); //remover acoplamento depois
 
         public Usuario usuario { get; set; }
         public Pessoa() { }
 
-        public Pessoa(int id, string nome, string email, string senha, List<Projeto> projetos)
-        {
-            this.id = id;
+        public Pessoa(string nome, string email)
+        {  
             this.nome = nome;
             this.email = email;
-            this.projetos = projetos;
+
         }
+
+
     }
 }

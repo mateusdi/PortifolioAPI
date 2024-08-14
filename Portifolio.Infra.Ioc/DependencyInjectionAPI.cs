@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Portifolio.Application.Mappings;
 using Portifolio.Domain.Interfaces;
@@ -23,12 +24,12 @@ namespace Portifolio.Infra.Ioc
             //opt.UseInMemoryDatabase("portifolio"));
 
             var connectionString = configuration.GetConnectionString("AZURE_SQL_CONNECTIONSTRING");
+            connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<DBContext>(options => options.UseSqlServer(connectionString));
 
             //conexão com o banco de dados
             //var connectionStringMysql = configuration.GetConnectionString("ConnectionMysql");
             //services.AddDbContextPool<DBContext>(option => option.UseMySql(connectionStringMysql, ServerVersion.AutoDetect(connectionStringMysql)));
-            
 
             services.AddScoped<IPessoa, PessoaRepository>();
             services.AddScoped<IProjeto, ProjetoRepository>();
@@ -37,27 +38,6 @@ namespace Portifolio.Infra.Ioc
 
             //automapper
             services.AddAutoMapper(typeof(EntitiesToDTOMappingProfile));
-
-            //autenticação JWT
-            services.AddAuthentication(opt =>
-            {
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-
-                    ValidIssuer = configuration["jwt:issuer"],
-                    ValidAudience = configuration["jwt:audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["jwt:secretKey"])),
-                    ClockSkew = TimeSpan.Zero
-                };
-            });
 
             return services;
         }

@@ -9,7 +9,8 @@ using Portifolio.Infra.Data.Repositories;
 namespace Portifolio.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    //[Route("[controller]")]
+    [Route("Projetos")]
     public class ProjetoController : ControllerBase
     {
         private readonly IProjeto _projetoRepository;
@@ -21,7 +22,7 @@ namespace Portifolio.Controllers
             _projetoRepository = genericRepository;
         }
 
-        [HttpGet(Name = "GetAllProjetos")]
+        [HttpGet]
         public async Task<ActionResult<List<Projeto>>> GetAll()
         {
             var projetos = await _projetoRepository.GetAllAsync();
@@ -29,7 +30,7 @@ namespace Portifolio.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Projeto>> GetById(int id)
+        public async Task<ActionResult<Projeto>> GetProjetoById(int id)
         {
             var projeto = await _projetoRepository.GetByIdAsync(id);
             return Ok(_mapper.Map<ProjetoListDTO>(projeto));
@@ -38,8 +39,8 @@ namespace Portifolio.Controllers
         [HttpPost]
         public async Task<ActionResult<Projeto>> Create(ProjetoDTO projetoDto)
         {
-            await _projetoRepository.Create(_mapper.Map<Projeto>(projetoDto));
-            return Ok(projetoDto);
+            var projeto = await _projetoRepository.Create(_mapper.Map<Projeto>(projetoDto));
+            return CreatedAtAction(nameof(GetProjetoById), new { projeto.id }, _mapper.Map<ProjetoListDTO>(projeto));
         }
 
         [HttpDelete("{id}")]

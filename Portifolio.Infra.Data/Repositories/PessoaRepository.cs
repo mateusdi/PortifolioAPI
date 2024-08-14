@@ -17,10 +17,14 @@ namespace Portifolio.Infra.Data.Repositories
             _context = context;
         }
 
-        public async Task Create(Pessoa pessoa)
+        public async Task<Pessoa> Create(Pessoa pessoa)
         {
              _context.Pessoas.Add(pessoa);
              await _context.SaveChangesAsync();
+
+            return await Task.FromResult<Pessoa>(pessoa);
+
+
         }
 
         public async Task Delete(int id)  

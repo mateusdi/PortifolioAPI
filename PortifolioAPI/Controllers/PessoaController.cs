@@ -9,19 +9,20 @@ using Portifolio.Domain.Interfaces;
 namespace Portifolio.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    //[Route("[controller]")]
+    [Route("Pessoas")]
     public class PessoaController : ControllerBase
     {
         private readonly IPessoa _pessoaRepository;
         private readonly IMapper _mapper;
 
-        public PessoaController(IPessoa genericRepository, IMapper mapper)
+        public PessoaController(IPessoa pessoaRepository, IMapper mapper)
         {
             _mapper = mapper;
-            _pessoaRepository = genericRepository;
+            _pessoaRepository = pessoaRepository;
         }
 
-        [HttpGet(Name = "GetAllPessoas")]
+        [HttpGet]
         public async Task<ActionResult<List<PessoaListDTO>>> GetAll()
         {
             var pessoas = await _pessoaRepository.GetAllAsync();
@@ -39,8 +40,8 @@ namespace Portifolio.Controllers
         [HttpPost]
         public async Task<ActionResult<PessoaDTO>> Create(PessoaDTO pessoaDto)
         {
-            await _pessoaRepository.Create(_mapper.Map<Pessoa>(pessoaDto));
-            return Ok(pessoaDto);
+            var pessoa = await _pessoaRepository.Create(_mapper.Map<Pessoa>(pessoaDto));
+            return CreatedAtAction(nameof(GetPessoaById), new { pessoa.id }, _mapper.Map<PessoaListDTO>(pessoa)); 
         }
 
         [HttpDelete("{id}")]
