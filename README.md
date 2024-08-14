@@ -6,7 +6,7 @@ A API até o fim do desenvolvimento deve ser capaz de gerenciar os projetos de u
 1. C#
 2. Asp.Net 8
 3. Entity Framework
-4. Clean Architecture
+
 
 
 ## Como acessar?
